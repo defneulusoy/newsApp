@@ -15,7 +15,7 @@ void showMyBottomSheet(
       elevation: 20,
       context: context,
       builder: (context) {
-        MyBottomSheetLayout(
+        return MyBottomSheetLayout(
           url: url,
           imageurl: imageurl,
           title: title,
@@ -24,4 +24,61 @@ void showMyBottomSheet(
       });
 }
 
-_launchURL
+_launchURL(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+class MyBottomSheetLayout extends StatelessWidget {
+  final String title;
+  final String description;
+  final String imageurl;
+  final String url;
+
+  const MyBottomSheetLayout(
+      {Key? key,
+      required this.title,
+      required this.description,
+      required this.imageurl,
+      required this.url})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          BottomSheetImage(imageurl: imageurl, title: title),
+          Container(
+            padding: EdgeInsets.all(10),
+            child:
+                modifiedText(text: description, color: Colors.white, size: 16),
+          ),
+          Container(
+            padding: EdgeInsets.all(10),
+            child: RichText(
+                text: TextSpan(children: <TextSpan>[
+              TextSpan(
+                  text: 'Read Full Article',
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      _launchURL(url);
+                    },
+                    style: GoogleFonts.lato(
+                      color: Colors.blue.shade400,
+                    ))
+            ])),
+          )
+        ],
+      ),
+    );
+  }
+}
