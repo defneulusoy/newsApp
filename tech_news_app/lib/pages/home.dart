@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tech_news_app/backend/functions.dart';
-import 'package:tech_news_app/components/appbar.dart';
-import 'package:tech_news_app/components/newsbox.dart';
+//import 'package:tech_news_app/components/appbar.dart';
 import 'package:tech_news_app/components/newsbox.dart';
 import 'package:tech_news_app/components/searchbar.dart';
 import 'package:tech_news_app/utils/colors.dart';
@@ -22,6 +21,7 @@ class _HomeState extends State<Home> {
     news = fetchnews();
   }
 
+  @override
   Widget build(BuildContext context) {
     var w = MediaQuery.of(context).size.width;
     return Scaffold(

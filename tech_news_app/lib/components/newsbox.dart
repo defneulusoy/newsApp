@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:tech_news_app/components/components.dart';
+//import 'package:tech_news_app/components/components.dart';
 import 'package:tech_news_app/utils/colors.dart';
-import 'package:tech_news_app/utils/text.dart';
-import 'package:google_fonts/google_fonts.dart';
+//import 'package:tech_news_app/utils/text.dart';
+//import 'package:google_fonts/google_fonts.dart';
 import 'bottomsheet.dart';
 import 'components.dart';
 
@@ -54,6 +54,7 @@ class NewsBox extends StatelessWidget {
       ),
 
     ),),
-    DividerWidget()]);
+     DividerWidget()
+    ]);
   }
 }

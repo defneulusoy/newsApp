@@ -1,3 +1,5 @@
+//import 'dart:html';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -62,23 +64,32 @@ class MyBottomSheetLayout extends StatelessWidget {
             child:
                 modifiedText(text: description, color: Colors.white, size: 16),
           ),
-          Container(
-            padding: EdgeInsets.all(10),
-            child: RichText(
-                text: TextSpan(children: <TextSpan>[
-              TextSpan(
-                  text: 'Read Full Article',
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      _launchURL(url);
-                    },
-                    style: GoogleFonts.lato(
-                      color: Colors.blue.shade400,
-                    ))
-            ])),
+          GestureDetector(
+            onTap: () {
+              _launchURL(url);
+            },
+            child: Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.black
+              ),
+              child: Text('Read Full Article', style: GoogleFonts.lato(color: Colors.deepPurple),),
+              /* child: RichText(
+                  text: TextSpan(children: <TextSpan>[
+                TextSpan(
+                    text: 'Read Full Article',
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        _launchURL(url);
+                      },
+                      style: GoogleFonts.lato(
+                        color: Colors.blue.shade400,
+                      ))
+              ])), */
+            ),
           )
         ],
       ),
     );
   }
-}
+} 
